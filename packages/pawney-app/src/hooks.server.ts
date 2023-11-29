@@ -7,12 +7,12 @@ const validateSession: Handle = async ({ event, resolve }) => {
 
     if(session_token) {
         try {
-            const { user, session_token: new_session_token } = await stytchClient.sessions.authenticate({ 
+            const { user, session_token: new_session_token, session } = await stytchClient.sessions.authenticate({ 
                 session_token,
                 session_duration_minutes: 60 * 24 * 30 // 30 days
              });
 
-            event.locals.user = { user_id: user.user_id, email: user.emails[0].email };
+            event.locals.user = { user_id: user.user_id, email: user.emails[0].email, session_id: session.session_id };
 
             // Update the cookie with a new session token.
             event.cookies.set('session_token', new_session_token, {
@@ -24,6 +24,9 @@ const validateSession: Handle = async ({ event, resolve }) => {
             });
         } catch (error) {
             console.error(error);
+            event.cookies.delete('session_token', {
+                path: '/'
+            });
         }
     }
 

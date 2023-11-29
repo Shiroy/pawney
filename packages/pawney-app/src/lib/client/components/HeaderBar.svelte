@@ -12,7 +12,7 @@ export let userInfo: UserInfo | null = null;
     </div>
     <div>
         {#if userInfo}
-            <p>{userInfo.email}</p>
+            <p>{userInfo.email} (<a href="/logout" data-sveltekit-reload>Logout</a>)</p>
         {:else}
             <p><a href="/login">Login</a></p>
         {/if}
