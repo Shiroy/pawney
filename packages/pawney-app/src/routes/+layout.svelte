@@ -9,7 +9,7 @@ export let data: LayoutData;
 
 <div class="container mx-auto flex flex-col space-y-4">
     <HeaderBar userInfo={data.user ?? null}/>
-    <div>
+    <div class="px-2">
         <slot />
     </div>
 </div>
