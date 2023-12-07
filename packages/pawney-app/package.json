@@ -37,6 +37,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@formance/formance-sdk": "^1.0.20230915",
+		"axios": "^1.6.2",
 		"stytch": "^9.1.0",
 		"zod": "^3.22.4"
 	}
